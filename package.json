@@ -1,0 +1,10 @@
+{
+  "name": "mpx",
+  "version": "1.0.0",
+  "description": "Melt Project X Workshop 1",
+  "main": "index.ts",
+  "author": "Manuel Zapata <manuel@meltstudio.co>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["client", "server"]
+}
