@@ -12,9 +12,6 @@ const Schema = Yup.object().shape({
 });
 type SchemaType = Yup.InferType<typeof Schema>;
 
-const serverUri =
-  process.env.NEXT_PUBLIC_VALIDATION_SERVER || "http://localhost:8000";
-
 const ValidateToken = () => {
   const [claims, setClaims] = useState<string>("");
 
@@ -23,7 +20,7 @@ const ValidateToken = () => {
     { setSubmitting }: FormikHelpers<SchemaType>
   ) => {
     try {
-      const response = await axios.post(`${serverUri}/api/validate`, values);
+      const response = await axios.post("/api/validate", values);
       setClaims(JSON.stringify(response.data));
     } catch (e: unknown) {
       setClaims(JSON.stringify(e));

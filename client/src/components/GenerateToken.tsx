@@ -10,6 +10,9 @@ const Schema = Yup.object().shape({
 });
 type SchemaType = Yup.InferType<typeof Schema>;
 
+const serverUri =
+  process.env.NEXT_PUBLIC_TOKEN_SERVER || "http://localhost:8000";
+
 const GenerateToken = () => {
   const [token, setToken] = useState<string>("");
   const [serverError, setServerError] = useState<string>("");
@@ -22,7 +25,7 @@ const GenerateToken = () => {
     try {
       const {
         data: { token },
-      } = await axios.post<{ token: string }>("/api/generate", values);
+      } = await axios.post<{ token: string }>(`${serverUri}/api/generate`, values);
       setToken(token);
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
